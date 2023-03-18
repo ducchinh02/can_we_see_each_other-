@@ -1,0 +1,338 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  overflow-x: hidden;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  display: block;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+.container {
+  max-width: 50rem;
+  margin: 10rem auto;
+  width: 100%;
+}
+
+.d-none {
+  display: none !important;
+}
+
+:root {
+  --hue: 223;
+  --bg: hsl(var(--hue), 90%, 90%);
+  --fg: hsl(var(--hue), 90%, 10%);
+  --trans-dur: 0.3s;
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smiley {
+  width: 8em;
+  height: 8em;
+}
+
+.smiley__eye1,
+.smiley__eye2,
+.smiley__mouth1,
+.smiley__mouth2 {
+  animation: eye1 3s ease-in-out infinite;
+}
+
+.smiley__eye1,
+.smiley__eye2 {
+  transform-origin: 64px 64px;
+}
+
+.smiley__eye2 {
+  animation-name: eye2;
+}
+
+.smiley__mouth1 {
+  animation-name: mouth1;
+}
+
+.smiley__mouth2 {
+  animation-name: mouth2;
+  visibility: hidden;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: hsl(var(--hue), 90%, 10%);
+    --fg: hsl(var(--hue), 90%, 90%);
+  }
+}
+/* Animations */
+@keyframes eye1 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
+  }
+  50%, 60% {
+    animation-timing-function: cubic-bezier(0.17, 0, 0.58, 1);
+    transform: rotate(-40deg) translate(0, -56px) scale(1);
+  }
+  to {
+    transform: rotate(225deg) translate(0, -56px) scale(0.35);
+  }
+}
+@keyframes eye2 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
+  }
+  50% {
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+  }
+  52.5% {
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1, 0);
+  }
+  55%, 70% {
+    animation-timing-function: cubic-bezier(0, 0, 0.28, 1);
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+  }
+  to {
+    transform: rotate(150deg) translate(0, -56px) scale(0.4);
+  }
+}
+@keyframes eyeBlink {
+  from, 25%, 75%, to {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0);
+  }
+}
+@keyframes mouth1 {
+  from {
+    animation-timing-function: ease-in;
+    stroke-dasharray: 0 351.86;
+    stroke-dashoffset: 0;
+  }
+  25% {
+    animation-timing-function: ease-out;
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    animation-timing-function: steps(1, start);
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: -175.93;
+    visibility: visible;
+  }
+  75%, to {
+    visibility: hidden;
+  }
+}
+@keyframes mouth2 {
+  from {
+    animation-timing-function: steps(1, end);
+    visibility: hidden;
+  }
+  50% {
+    animation-timing-function: ease-in-out;
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -351.86;
+  }
+}
+@-webkit-keyframes fade-scale {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes fade-scale {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.main-content {
+  -webkit-animation: fade-scale 0.35s linear both;
+  animation: fade-scale 0.35s linear both;
+  z-index: 9999;
+  position: relative;
+}
+.main-content .punchline-contain {
+  text-align: center;
+}
+.main-content .punchline-contain .punchline-header {
+  font-weight: 600;
+  font-size: 2.1rem;
+}
+.main-content .punchline-contain .punchline-image {
+  margin: 30px 0;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.main-content .punchline-contain .button-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.main-content .punchline-contain .button-actions .button-item {
+  padding: 1rem 1.6rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: #c8b6a6;
+  color: #fff;
+  transition: all 0.3s;
+}
+.main-content .punchline-contain .button-actions .button-item:hover {
+  background-color: #a4907c;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes {
+  position: relative;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert {
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 120%;
+  background-color: #f2eee4;
+  z-index: -1;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert .lovely-content {
+  transition: all 0.3s ease;
+  color: #000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem 2rem;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert .lovely-content .lovely-image {
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert .lovely-content .lovely-message {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert.active {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 450px;
+  width: 100%;
+  height: 450px;
+  z-index: 9999999;
+}
+.main-content .punchline-contain .button-actions .button-item.btn-yes .lovely-alert.active .lovely-content {
+  display: flex;
+  -webkit-animation: fade-scale 0.35s linear both;
+  animation: fade-scale 0.35s linear both;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 998;
+}
+.overlay.active {
+  -webkit-animation: fade-scale 0.35s linear both;
+  animation: fade-scale 0.35s linear both;
+  display: block;
+}
+
+/*# sourceMappingURL=main.css.map */
