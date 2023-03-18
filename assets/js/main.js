@@ -36,7 +36,9 @@ btnActions.forEach((btn) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-	preloader.classList.add("d-none");
-	mainContent.classList.remove("d-none");
-	window.scrollBy({ top: 0 });
+	setTimeout(() => {
+		preloader.classList.add("d-none");
+		mainContent.classList.remove("d-none");
+		window.scrollBy({ top: 0 });
+	}, 1000);
 });
